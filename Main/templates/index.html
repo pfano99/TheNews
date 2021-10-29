@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The NewsPile</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>The NewsPile</h1>
+            <ul>
+                {% for item in sections %}
+                    <li>
+                        <a href="#">
+                            {{ item }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <div>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.topic.label }}
+            {{ form.topic }}
+            {{ form.submit }}
+        </form>
+    </div>
+
+    <div>
+        {% if data %}
+            <ul>
+                {% for article in data %}
+                    <hr>
+                    <li> 
+                        <img src="{{ article.fields.thumbnail }}" alt="...">
+                        <h2> 
+                            <a href="{{ article.webUrl }}">{{ article.webTitle }}</a>    
+                        </h2>
+                        <span>{{ article.webPublicationDate }}</span>
+                        <span>{{ article.sectionName }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+</body>
+</html>
